@@ -10,7 +10,8 @@ body, html
 {
 	overflow-y: scroll;
 	overflow-x: hidden;
-	scroll-behavior: smooth
+	scroll-behavior: smooth;
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
 }
 
 ::-webkit-scrollbar
@@ -38,6 +39,18 @@ hr
 	height: 1px;
 	border: 0;
 	margin: 20px 0;
+}
+
+::selection
+{
+	background: #c0c0c0;
+	color: #222;
+}
+
+::-moz-selection
+{
+	background: #c0c0c0;
+	color: #222;
 }
 
 /* container */
@@ -74,7 +87,7 @@ hr
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: #1B1B1B;
+	background-color: #1b1b1b;
 }
 
 .header_logo
@@ -139,6 +152,20 @@ hr
 	max-width: 880px;
 	margin: 0 auto;
 	text-align: center;
+}
+
+.github__icon
+{
+	color: #fff;
+	font-size: 60px;
+	margin-bottom: 15px;
+	transition: transform 0.3s ease-in-out;
+}
+
+.github__icon:hover
+{
+	filter: brightness(0.8);
+	transform: scale(0.9);
 }
 
 .intro__title
@@ -207,11 +234,12 @@ hr
 .services__icon
 {
 	font-size: 30px;
-
 	position: absolute;
 	top: 0;
 	left: 28px;
 	z-index: 1;
+	animation: reflect 5s infinite;
+	will-change: transform;
 }
 
 .services__title
@@ -250,26 +278,50 @@ hr
 	border: 1px solid #fff;
 }
 
-.accordion__item.active 
-.accordion__content
+.accordion__item
+{
+	margin-bottom: 10px;
+	border: 1px solid #fff;
+}
+
+.accordion__item.active .accordion__content
 {
 	display: block;
 }
 
-.accordion__item.active 
-.accordion__header
+.accordion__header, .accordion__content
 {
-	border-bottom: 1px solid #fff;
+	cursor: pointer;
 	padding: 15px 20px 15px 65px;
 	position: relative;
 }
 
-.accordion__header
+.accordion__content
+{
+	position: relative;
+	max-height: 0;
+	transition: max-height 0.5s ease-in-out;
+	overflow: hidden;
+	padding: 0px 20px 0px 65px;
+	font-size: 16px;
+	font-weight: 300;
+	color: #999;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.accordion__content:after
+{
+	content: "";
+	display: block;
+	margin: 15px auto 0;
+}
+
+.accordion__title
 {
 	cursor: pointer;
-	border-bottom: 1px solid transparent;
-	padding: 15px 20px 15px 65px;
-	position: relative;
+	font-size: 16px;
+	font-weight: 700;
+	text-transform: uppercase;
 }
 
 .cricle__icon
@@ -281,23 +333,6 @@ hr
 	right: 20px;
 	z-index: 1;
 	transform: translateY(-50%);
-}
-
-.accordion__content
-{
-	display: none;
-	padding: 15px 20px 15px 65px;
-	font-size: 16px;
-	font-weight: 300;
-	color: #999;
-}
-
-.accordion__title
-{
-	cursor: pointer;
-	font-size: 16px;
-	font-weight: 700;
-	text-transform: uppercase;
 }
 
 /* products */
@@ -323,18 +358,149 @@ hr
 	top: 0;
 	left: 28px;
 	z-index: 1;
+	animation: reflect 5s infinite;
+	will-change: transform;
 }
 
 .products__title
 {
+	color: #fff;
+	display: inline-block;
+	position: relative;
 	margin-bottom: 7px;
 	font-size: 16px;
 	font-weight: 700;
 	text-transform: uppercase;
+	text-decoration: none;
+	transition: color .1s linear;
+}
+
+.products__title::after
+{
+	display: block;
+	position: absolute;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background-color: #fff;
+	content: "";
+	transition: width 0.3s ease-out;
+}
+
+.products__title:hover:after
+{
+	width: 100%;
 }
 
 .products__text
 {
 	font-size: 16px;
 	color: #999;
+}
+
+@keyframes reflect
+{
+	0% {transform: scaleX(1);}
+	50% {transform: scaleX(-1);}
+	100% {transform: scaleX(1);}
+}
+
+@media only screen and (max-device-width: 480px)
+{
+	.header_inner
+	{
+		height: 100px;
+	}
+
+	.header_logo
+	{
+		font-size: 50px;
+		margin-left: 10%;
+	}
+
+	.nav
+	{
+		font-size: 22px;
+		margin-right: 10%;
+	}
+
+	.nav__link
+	{
+		margin: 0 10px;
+	}
+
+	.github__icon
+	{
+		font-size: 100px;
+	}
+
+	.intro__title
+	{
+		font-size: 100px;
+	}
+
+	.intro__subtitle
+	{
+		font-size: 50px;
+	}
+
+	.section
+	{
+		padding: 80px 0;
+	}
+
+	.section__title
+	{
+		font-size: 50px;
+	}
+
+	.section__title:after
+	{
+		width: 75px;
+		height: 5px;
+	}
+
+	.services__icon
+	{
+		font-size: 40px;
+		top: 2%;
+		left: 20px;
+	}
+
+	.questions__item
+	{
+		width: 85%;
+	}
+
+	.cricle__icon
+	{
+		font-size: 15px;
+	}
+
+	.accordion__title
+	{
+		font-weight: 600;
+		text-align: justify;
+		padding-right: 10%;
+		font-size: 16px;
+	}
+
+	.accordion__content
+	{
+		text-align: justify;
+		padding-right: 10%;
+		font-size: 40px;
+	}
+
+	.products__icon
+	{
+		font-size: 40px;
+		top: 2%;
+		left: 20px;
+	}
+
+	.products__title
+	{
+		font-size: 40px;
+	}
 }
