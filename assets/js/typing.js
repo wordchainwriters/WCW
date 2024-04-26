@@ -54,7 +54,7 @@ TextRotator.prototype.startRotation = function()
 window.onload = function()
 {
   var rotationPeriod = 5000;
-  var textToRotate = ["innovative influence.", "greatness is coming.", "byte of boldness.", "software flourishing."];
+  var textToRotate = ["Professional Writers.", "Writing Solutions.", "Best Content Writer.", "Content King."];
 
   var elements = document.getElementsByClassName('intro__subtitle');
 
